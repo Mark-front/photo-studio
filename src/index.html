@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High pass</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript" defer></script>
+  <script src="gsap/gsap.min.js" defer></script>
+  <script src="scrollMagic\ScrollMagic.min.js" defer></script>
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <section class="header--top">
+      <div class="container header__container">
+        <a href="#" class="header__logo logo" aria-label="Логотип High pass">
+          <img width="190" height="30" src="./img/sprite.svg#logo" alt="Логотип High pass">
+        </a>
+        <nav class="header__nav header__nav--top nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                О студии
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Наши проекты
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Услуги
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Мастер-классы
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <ul class="header__social social social__list">
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg viewBox="0 0 32 32">
+                <use xlink:href="./img/sprite.svg#inst" />
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg class="inst" viewBox="0 0 32 32">
+                <use xlink:href="./img/sprite.svg#fb" />
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg class="inst" viewBox="0 0 32 32">
+                <use xlink:href="./img/sprite.svg#vk" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <form class="header__search search" action="#">
+          <input class="search__input" type="text" placeholder="Что будем искать?">
+          <button class="search__btn" type="button">
+            <svg viewBox="0 0 20 20">
+              <use xlink:href="./img/sprite.svg#close" />
+            </svg>
+          </button>
+        </form>
+        <button class="header__search-open search-open">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="./img/sprite.svg#search" />
+          </svg>
+        </button>
+      </div>
+    </section>
+    <section class="header--bottom">
+      <div class="container header__container--bottom">
+        <nav class="header__nav nav nav--bottom">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                О студии
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Наши проекты
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Услуги
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Мастер-классы
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <button class="burger-open"></button>
+        <div id="burger" class="burger">
+          <div class="burger__container">
+            <button class="burger__close" type="button">
+              <svg viewBox="0 0 20 20">
+                <use xlink:href="./img/sprite.svg#close" />
+              </svg>
+            </button>
+            <nav class="burger__nav nav nav--burger">
+              <ul class="nav__list">
+                <li class="nav__item">
+                  <a href="#" class="nav__link">
+                    О студии
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a href="#" class="nav__link">
+                    Наши проекты
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a href="#" class="nav__link">
+                    Услуги
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a href="#" class="nav__link">
+                    Мастер-классы
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a href="#" class="nav__link">
+                    Контакты
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <a class="burger__tel tel" href="tel:+7 (495) 42-423-532">
+              <svg class="call-icon" viewBox="0 0 17 17">
+                <use xlink:href="./img/sprite.svg#mdi_call" />
+              </svg>
+              +7 (495) 42-423-532
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main class="main">
+    <section class="hero">
+      <div class="container hero__container">
+        <div class="hero__main-img main-img">
+          <picture class="main-img__picture">
+            <source media="(max-width: 510px)" srcset="./img/master-class_320.webp">
+            <source media="(max-width: 756px)" srcset="./img/master-class_1024.webp">
+            <source media="(max-width: 1000px)" srcset="./img/master-class_768.webp">
+            <source media="(max-width: 1325px)" srcset="./img/master-class_1024.webp">
+            <img src="./img/master-class_1920.webp" alt="">
+          </picture>
+          <div class="main-img__content content">
+            <div class="content__container">
+              <div class="content__text">
+                <p class="content__description">
+                  Мастер-класс от Игоря Робова
+                </p>
+                <h1 class="content__title">
+                  Неоновый фотосет 2.0 7 июля 20:00
+                </h1>
+                <a href="#" class="content__button button button--orange" aria-label="Узнать больше">Узнать больше</a>
+              </div>
+              <div class="content__hashtag hashtag">
+                #мастеркласс
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__pictures pictures">
+          <h2 class="pictures__title section-title">
+            Работы участников предыдущего мастер-класса
+          </h2>
+          <!-- list-2-halves divide second row in half -->
+          <ul class="pictures__list list-2-halves">
+            <li class="list-2-halves__item">
+              <picture class="main-img__picture">
+                <source media="(max-width: 510px)" srcset="./img/first-case_320.webp">
+                <source media="(max-width: 756px)" srcset="./img/first-case_1024.webp">
+                <source media="(max-width: 1000px)" srcset="./img/first-case_768.webp">
+                <source media="(max-width: 1325px)" srcset="./img/first-case_1024.webp">
+                <img src="./img/first-case_1920.webp" alt="">
+              </picture>
+            </li>
+            <li class="list-2-halves__item">
+              <picture class="main-img__picture">
+                <source media="(max-width: 510px)" srcset="./img/second-case_320.webp">
+                <source media="(max-width: 756px)" srcset="./img/second-case_1024.webp">
+                <source media="(max-width: 1000px)" srcset="./img/second-case_768.webp">
+                <source media="(max-width: 1325px)" srcset="./img/second-case_1024.webp">
+                <img src="./img/second-case_1920.webp" alt="">
+              </picture>
+            </li>
+            <li class="list-2-halves__item">
+              <picture class="main-img__picture">
+                <source media="(max-width: 510px)" srcset="./img/third-case_320.webp">
+                <source media="(max-width: 756px)" srcset="./img/third-case_1024.webp">
+                <source media="(max-width: 1000px)" srcset="./img/third-case_768.webp">
+                <source media="(max-width: 1325px)" srcset="./img/third-case_1024.webp">
+                <img src="./img/third-case_1920.webp" alt="">
+              </picture>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="about-studio">
+      <div class="container about-studio__container">
+        <h2 class="about-studio__title section-title">
+          О студии
+        </h2>
+        <p class="about-studio__text">
+          В рамках спецификации современных стандартов, интерактивные прототипы, инициированные исключительно
+          синтетически, ограничены исключительно образом мышления. Предварительные выводы неутешительны:
+          высокотехнологичная концепция общественного уклада требует от нас анализа соответствующих условий активизации!
+          Следует отметить, что семантический разбор внешних противодействий фиксирует необходимость распределения
+          внутренних резервов и ресурсов. Безусловно, граница обучения кадров предоставляет широкие возможности для
+          первоочередных требований. Повседневная практика показывает, что глубокий уровень погружения предполагает
+          независимые способы реализации новых принципов формирования материально-технической и кадровой базы. Приятно,
+          граждане, наблюдать, как явные признаки институционализации являются только методом политического участия и
+          нарушающими общечеловеческие нормы этики.
+        </p>
+        <div class="about-studio__subscribe">
+          <span class="about-studio__picture"></span>
+          <form id="subscribe-form" class="subscribe" action="https://jsonplaceholder.typicode.com/posts" method="post">
+            <h3 class="subscribe__title">
+              Подписаться на рассылку
+            </h3>
+            <label>
+              <input id="subscribe__email" class="subscribe__input input" type="text" placeholder="E-mail" name="E-mail">
+            </label>
+            <button type="submit" class="subscribe__btn button button--orange">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="our-projects container">
+      <h2 class="our-projects__title section-title">
+        Наши проекты
+      </h2>
+      <div class="our-projects__cards">
+        <div class="our-projects__card card-project card-project--nature">
+          <div class="card-project__foto">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/nature_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/nature_320.webp">
+              <source media="(max-width: 1325px)" srcset="./img/nature_1024.webp">
+              <img src="./img/nature_1920.webp" alt="">
+            </picture>
+            <div class="card-project__hashtag hashtag">
+              #пейзаж
+            </div>
+          </div>
+          <a href="#" class="card-project__description card-project__description--link">
+            Синтетически, смешаны с не уникальными данными до степени lorem ipsum, dolor sit amet consectetur
+            adipisicing
+            elit.
+          </a>
+          <div class="card-project__data data">
+            <span class="data__icon">
+              <svg viewBox="0 0 12 13">
+                <use xlink:href="./img/sprite.svg#data" />
+              </svg>
+            </span>
+            16 июня
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--beard-man">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/beard-man_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/beard-man_320.webp">
+              <source media="(max-width: 1325px)" srcset="./img/beard-man_1024.webp">
+              <img src="./img/beard-man_1920.webp" alt="">
+            </picture>
+            <div class="card-project__hashtag hashtag">
+              #портрет
+            </div>
+          </div>
+          <a href="#" class="card-project__description card-project__description--link">
+            В своём стремлении улучшить опыт мы упускаем, что явные lorem ipsum, dolor sit amet consectetur adipisicing
+            elit.
+          </a>
+          <div class="card-project__data data">
+            <span class="data__icon">
+              <svg viewBox="0 0 12 13">
+                <use xlink:href="./img/sprite.svg#data" />
+              </svg>
+            </span>
+            28 мая
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--still-life">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/still-life_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/still-life_320.webp">
+              <source media="(max-width: 1000px)" srcset="./img/still-life_768.webp">
+              <source media="(max-width: 1325px)" srcset="./img/still-life_1024.webp">
+              <img src="./img/still-life_1920.webp" alt="">
+            </picture>
+            <div class="card-project__hashtag hashtag">
+              #предмет
+            </div>
+          </div>
+          <a href="#" class="card-project__description card-project__description--link">
+            Равным образом, высокое качество позиционны lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          </a>
+          <div class="card-project__data data">
+            <span class="data__icon">
+              <svg viewBox="0 0 12 13">
+                <use xlink:href="./img/sprite.svg#data" />
+              </svg>
+            </span>
+            14 мая
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--semantic-analysis">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/semantic-analysis_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/semantic-analysis_320.webp">
+              <source media="(max-width: 1000px)" srcset="./img/semantic-analysis_768.webp">
+              <source media="(max-width: 1325px)" srcset="./img/semantic-analysis_1024.webp">
+              <img src="./img/semantic-analysis_1920.webp" alt="">
+            </picture>
+            <div class="card-project__foto-content">
+              <div class="card-project__data data">
+                <span class="data__icon data__icon--white">
+                  <svg viewBox="0 0 32 32">
+                    <use xlink:href="./img/sprite.svg#data" />
+                  </svg>
+                </span>
+                9 апреля
+              </div>
+              <h3 class="card-project__title">
+                Cемантический разбор
+              </h3>
+              <p class="card-project__description">
+                В рамках спецификации современных стандартов, интерактивные прототипы
+              </p>
+            </div>
+            <a href="#" class="card-project__btn button">
+              О проекте
+            </a>
+            <div class="card-project__hashtag hashtag">
+              #fuji
+            </div>
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--oblivion">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/oblivion_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/oblivion_320.webp">
+              <source media="(max-width: 1000px)" srcset="./img/oblivion_768.webp">
+              <source media="(max-width: 1325px)" srcset="./img/oblivion_1024.webp">
+              <img src="./img/oblivion_1920.webp" alt="">
+            </picture>
+            <div class="card-project__foto-content">
+              <div class="card-project__data data">
+                <span class="data__icon data__icon--white">
+                  <svg viewBox="0 0 32 32">
+                    <use xlink:href="./img/sprite.svg#data" />
+                  </svg>
+                </span>
+                20 марта
+              </div>
+              <h3 class="card-project__title">
+                Забвение
+              </h3>
+              <p class="card-project__description">
+                Играет важную роль в формировании глубокомысленных рассуждений
+              </p>
+            </div>
+            <a href="#" class="card-project__btn button">
+              О проекте
+            </a>
+            <div class="card-project__hashtag hashtag">
+              #проектзабвение
+            </div>
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--oranges">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/oranges_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/oranges_320.webp">
+              <source media="(max-width: 1325px)" srcset="./img/oranges_1024.webp">
+              <img src="./img/oranges_1920.webp" alt="">
+            </picture>
+            <div class="card-project__hashtag hashtag">
+              #ретушь
+            </div>
+          </div>
+          <a href="#" class="card-project__description card-project__description--link">
+            Как принято считать, многие известные личности и по сей день остаются уделом либералов lorem ipsum, dolor
+            sit amet consectetur adipisicing
+            elit.
+          </a>
+          <div class="card-project__data data">
+            <span class="data__icon">
+              <svg viewBox="0 0 12 13">
+                <use xlink:href="./img/sprite.svg#data" />
+              </svg>
+            </span>
+            9 марта
+          </div>
+        </div>
+
+        <div class="our-projects__card card-project card-project--girl">
+          <div class="card-project__foto ">
+            <picture class="card-project__picture">
+              <source media="(max-width: 510px)" srcset="./img/girl_320.webp">
+              <source media="(max-width: 756px)" srcset="./img/girl_320.webp">
+              <source media="(max-width: 1325px)" srcset="./img/girl_1024.webp">
+              <img src="./img/girl_1920.webp" alt="">
+            </picture>
+            <div class="card-project__hashtag hashtag">
+              #портрет
+            </div>
+          </div>
+          <a href="#" class="card-project__description card-project__description--link">
+            С учётом сложившейся международной обстановки, новая модель организационной lorem ipsum, dolor sit amet
+            consectetur adipisicing
+            elit.
+          </a>
+          <div class="card-project__data data">
+            <span class="data__icon">
+              <svg viewBox="0 0 12 13">
+                <use xlink:href="./img/sprite.svg#data" />
+              </svg>
+            </span>
+            1 марта
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contacts container">
+      <h2 class="section-title contacts__title">
+        Контакты
+      </h2>
+      <div id="map" class="contacts__map">
+        <div class="contacts__address address">
+          <div class="address__content">
+            <button class="address__open">
+              <svg viewBox="0 0 20 20">
+                <use xlink:href="./img/sprite.svg#arrow-right" />
+              </svg>
+            </button>
+            <button class="address__close">
+              <svg viewBox="0 0 20 20">
+                <use xlink:href="./img/sprite.svg#close" />
+              </svg>
+            </button>
+            <h3 class="address__title">
+              Студия «High pass»
+            </h3>
+            <p class="address__address">
+              107045, Москва, Даев переулок, дом 41, бизнес-центр «Даев Плаза», этаж 8, офис № 82
+            </p>
+            <a class="address__tel tel" href="tel:+7 (495) 42-423-532">
+              <svg class="call-icon" viewBox="0 0 17 17">
+                <use xlink:href="./img/sprite.svg#mdi_call" />
+              </svg>
+              +7 (495) 42-423-532
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="send-us">
+        <h3 class="send-us__title">
+          Оставить заявку
+        </h3>
+        <p class="send-us__tip">
+          Оставьте ваши данные, указав в графе «Комментарий» желаемые время и дату съёмки или другого мероприятия
+        </p>
+        <form id="send-us-form" action="https://jsonplaceholder.typicode.com/posts" method="post" class="send-us__form form-communication">
+          <label>
+            <input id="send-us__name" type="text" class="form-communication__input input" name="name" placeholder="Имя">
+          </label>
+          <label>
+            <input id="send-us__email" type="email" class="form-communication__input input" name="email" placeholder="Email">
+          </label>
+          <label>
+            <textarea class="form-communication__textarea input" name="comment" placeholder="Комментарий"></textarea>
+          </label>
+          <button type="submit" class="form-communication__btn button button--orange">
+            Отправить
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div id="footerTrigger"></div>
+    <div id="footer__anim-container">
+      <div class="footer__container container">
+        <div class="footer__company  footer__company--top">
+          <a href="#" class="footer__logo footer__logo--top logo" aria-label="Логотип High pass">
+            <img width="190" height="30" src="./img/sprite.svg#logo" alt="Логотип High pass">
+          </a>
+          <h2 class="company__name">
+            Фотостудия High pass® 2018–2020
+          </h2>
+        </div>
+        <p class="footer__quote">
+          Которая из моих фотографий самая любимая? Та, которую я собираюсь снять завтра.
+          © Имоджен Каннингем
+        </p>
+        <div class="footer__social">
+          Больше интересного:
+          <ul class="footer__social-list social social__list">
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg class="inst" viewBox="0 0 32 32">
+                  <use xlink:href="./img/sprite.svg#odnokl" />
+                </svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg class="inst" viewBox="0 0 32 32">
+                  <use xlink:href="./img/sprite.svg#vk" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__container container">
+          <div class="footer__company">
+            <a href="#" class="footer__logo logo" aria-label="Логотип High pass">
+              <img width="190" height="30" src="./img/sprite.svg#logo" alt="Логотип High pass">
+            </a>
+            <p class="company__name">
+              Фотостудия High pass® 2018–2020
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

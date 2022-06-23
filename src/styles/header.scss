@@ -1,0 +1,251 @@
+@import "..//styles/_mixins.scss";
+
+.header {
+  color: var(--white);
+  background-color: var(--dark);
+  &--top {
+    padding: 25px 0;
+  }
+
+  &__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    justify-self: start;
+  }
+
+  &__search {
+    display: none;
+  }
+
+  &__search-open {
+    display: none;
+  }
+  
+  &--bottom {
+    display: none;
+  }
+}
+.logo {
+  display: block;
+  height: 30px;
+}
+.nav {
+  justify-self: center;
+  &__list {
+    display: flex;
+  }
+  
+  &__item {
+    &:not(:last-child) {
+      margin-right: 4.1vw;
+    }
+
+  }
+
+  &__link {
+    outline: none;
+    display: block;
+    color: var(--white);
+    letter-spacing: .3px;
+    @include transitionForClick();
+    &:hover {
+      color: var(--orangeFF);
+    }
+    &:focus {
+      background-color: var(--orangeBC);
+    }
+    &:active {
+      color: var(--orangeCE);
+    }
+  }
+}
+
+.social {
+  &__list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 20px;
+  }
+  &__link {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.burger-open, .burger {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    img {
+      width: 166px;
+      height: 27px;
+    }
+  }
+  .header {
+    &--top {
+      padding: 27px 0;
+    }
+
+
+    &__social {
+      display: none;
+    }
+  }
+
+  .nav {
+    &__item {
+      &:not(:last-child) {
+        margin-right: 3.24vw;
+      }
+    }
+  }
+  .search {
+    position: absolute;
+    right: 31px;
+    grid-template-columns: 5fr 1fr;
+    align-items: center;
+    background-color: var(--dark);
+    &__input {
+      border: none;
+      border-bottom: 1px solid var(--whiteE9);
+      background: transparent;
+      color: var(--whiteE9);
+      &::placeholder {
+        color: var(--whiteE9);
+      }
+    }
+
+    &__btn {
+      align-self: start;
+      justify-self: end;
+      @include btnClose();
+    }
+  }
+
+  .search-open {
+    width: 25px;
+    height: 25px;
+    @include btnClose();
+  }
+
+  @media (max-width: 831px) {
+    .header {
+      grid-template-columns: auto auto;
+      justify-content: space-between;
+      &--bottom {
+        display: block;
+        padding: 12px 0;
+        background-color: var(--grey4A);
+      }
+
+      &__search-open {
+        justify-self: end;
+      }
+    }
+  
+    .nav {
+      display: none;
+      &--bottom {
+        display: block;
+      }
+      &__list {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 557px) {
+      .header {
+        &--top {
+          padding: 21px 0;
+        }
+      }
+      .burger-open {
+        position: relative;
+        display: block;
+        width: 20px;
+        height: 2px;
+        margin: 8px 0;
+        background-color: var(--white);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: 0;
+          width: 20px;
+          height: 2px;
+          background-color: var(--white);
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: 0;
+          width: 10px;
+          height: 2px;
+          background-color: var(--white);
+        }
+      }
+
+      .search {
+        padding: 21px;
+        right: 0;
+        height: 72px;
+        width: 100%;
+      }
+
+      .burger {
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 14px 18px;
+        background-color: var(--dark);
+        &__container {
+          position: relative;
+          height: 90%;
+        }
+        &__close {
+          @include btnClose();
+          margin-bottom: 20px;
+        }
+        &__tel {
+          z-index: 1001;
+          position: absolute;
+          bottom: 0;
+        }
+      }
+    
+      .nav {
+        &--bottom {
+          display: none;
+        }
+        &__list {
+          display: block;
+        }
+        &__item {
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+        }
+        &--burger {
+          display: block;
+        }
+      }
+    } 
+  } 
+}
+

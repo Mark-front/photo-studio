@@ -1,0 +1,323 @@
+@import "..//styles/_mixins.scss";
+
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto/Roboto-Bold.eot');
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+    url('../fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
+    url('../fonts/Roboto/Roboto-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: url('../fonts/Roboto/Roboto-Regular.eot');
+  src: local('Roboto'), local('Roboto-Regular'),
+    url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2'),
+    url('../fonts/Roboto/Roboto-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue';
+  font-display: swap;
+  src: local('TT Firs Neue Regular'), local('TTFirsNeue-Regular'),
+    url('../fonts/TTFirsNeue/TTFirsNeue-Regular.woff2') format('woff2'),
+    url('../fonts/TTFirsNeue/TTFirsNeue-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue';
+  font-display: swap;
+  src: local('TT Firs Neue Bold'), local('TTFirsNeue-Bold'),
+    url('../fonts/TTFirsNeue/TTFirsNeue-Bold.woff2') format('woff2'),
+    url('../fonts/TTFirsNeue/TTFirsNeue-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+:root {
+  --white: #FFFFFF;
+  --whiteE9: #E9E9E9;
+  --whiteFF: #FFD4C1;
+  --dark: #202020;
+  --greyCA: #CACACA;
+  --greyE9: #E9E9E9;
+  --grey99: #999999;
+  --grey33: #333333;
+  --grey4A: #4A4A4A;
+  --orangeFF: #FF6E30;
+  --orangeBC: #BC572B;
+  --orangeCE: #CE4307;
+  --error: #FF3030;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--dark);
+  font-family: 'Roboto', sans-serif;
+  @include text(400, 16px, 28px);
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'main main'
+    'footer footer'
+  ;
+  grid-template-rows: auto 1fr auto;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 1290px;
+  margin: 0 auto;
+}
+
+picture,
+img {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0 0 !important;
+  font-family: 'TT Firs Neue', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.button {
+  width: fit-content;
+  padding: 16px 22px;
+  @include shadowLikeBorder(3px, var(--orangeFF));
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--orangeFF);
+  }
+
+  &:focus {
+    @include shadowLikeBorder(3px, var(--orangeFF));
+    background-color: var(--orangeBC);
+  }
+
+  &:active {
+    @include shadowLikeBorder(3px, var(--orangeCE));
+    background-color: var(--orangeCE);
+  }
+
+  &--orange {
+    box-shadow: none;
+    background-color: var(--orangeFF);
+    @include transitionForClick();
+
+    &:hover {
+      background-color: var(--orangeBC);
+    }
+
+    &:focus {
+      outline: none;
+      @include shadowLikeBorder(3px, var(--orangeCE));
+    }
+
+    &:active {
+      background-color: var(--orangeCE);
+    }
+  }
+
+}
+
+.call-icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+.tel {
+  display: flex;
+  align-items: flex-end;
+  font-family: 'TT Firs Neue';
+  font-style: normal;
+  @include text(500, 14px, 18px);
+  color: var(--orangeFF) !important;
+  transition: color 0.3s;
+  & > svg {
+    fill: var(--orangeFF);
+    transition: fill 0.3s;
+  }
+  &:hover{
+    color:#FF3030 !important;
+    &>svg {
+      fill: #FF3030;
+    }
+  }
+
+  &:focus{
+    color:var(--orangeBC) !important;
+    &>svg {
+      fill: var(--orangeBC);
+    }
+  }
+
+  &:active{
+    color:var(--orangeCE) !important;
+    &>svg {
+      fill: var(--orangeCE);
+    }
+  }
+}
+
+label {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  border: none;
+  padding: 15px 23px;
+  width: 100%;
+  @include transitionForClick();
+
+  &::placeholder {
+    @include text(400, 16px, 19px);
+  }
+
+  &:hover {
+    &::placeholder {
+      transition: color 0.3s;
+      color: var(--orangeFF);
+    }
+  }
+
+  &:focus {
+    outline: none;
+    @include shadowLikeBorder(1px, var(--orangeCE));
+  }
+}
+
+.social__link {
+  outline: none;
+
+  &>svg {
+    fill: var(--greyCA);
+    transition: fill 0.3s;
+  }
+
+  &:hover>svg {
+    fill: var(--orangeFF);
+  }
+
+  &:focus>svg {
+    fill: var(--orangeBC);
+  }
+
+  &:active>svg {
+    fill: var(--orangeCE);
+  }
+}
+
+.hashtag {
+  width: fit-content;
+  color: var(--white);
+  padding: 7px 15px;
+  background-color: var(--grey33);
+}
+
+.hidden {
+  display: none;
+}
+
+.section-title {
+  @include text(700, 24px, 25px);
+}
+
+
+@media (max-width: 1325px) {
+  .container {
+    padding: 0 31px;
+  }
+
+  @media (max-width: 1000px) {
+    .section-title {
+      @include text(700, 22px, 22px);
+    }
+  }
+
+  @media (max-width: 831px) {
+    .container {
+      padding: 0 27px;
+    }
+
+    .hashtag {
+      padding: 4px 7px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 557px) {
+      * {
+        @include text(400, 14px, 24px);
+      }
+
+      .button {
+        width: fit-content;
+        padding: 12px 22px;
+      }
+
+      .container {
+        padding: 0 21px;
+      }
+
+      .section-title {
+        @include text(700, 18px, 18px);
+      }
+    }
+  }
+}
