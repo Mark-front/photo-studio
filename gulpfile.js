@@ -51,12 +51,13 @@ const styles = () => {
         level: 2
       }))
       .pipe(dest('dist'))
+      .pipe(browserSync.stream())
   }
   return styles;
 }
 
 const htmlMinify = () => {
-  const html = src('src/**/*.html');
+  html = src('src/**/*.html');
   if (IS_DEV) {
     html
       .pipe(dest('dist'))
@@ -67,8 +68,9 @@ const htmlMinify = () => {
         collapseWhitespace: true
       }))
       .pipe(dest('dist'))
+      .pipe(browserSync.stream())
   }
-  return html;
+  return html
 }
 
 const svgSprites = () => {
@@ -110,6 +112,7 @@ const scripts = () => {
         toplevel: true
       }).on('error', notify.onError()))
       .pipe(dest('dist'))
+      .pipe(browserSync.stream())
   }
 
   return scripts
@@ -157,16 +160,11 @@ const sassStyles = () => {
 }
 
 const watchFiles = () => {
-  if (IS_DEV) {
-    browserSync.init({
-      server: {
-        baseDir: 'dist'
-      }
-    })
-  } else {
-    return null;
-  }
-  
+  browserSync.init({
+    server: {
+      baseDir: 'dist'
+    }
+  })
 }
 
 watch('src/**/*.html', htmlMinify);
@@ -192,4 +190,4 @@ exports.htmlMinify = htmlMinify;
 exports.sass = sass;
 exports.fonts = fonts;
 exports.webpConvert = webpConvert;
-exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images);
+exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images, watchFiles);
