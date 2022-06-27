@@ -56,7 +56,7 @@ const styles = () => {
 }
 
 const htmlMinify = () => {
-  html = src('src/**/*.html');
+  const html = src('src/**/*.html');
   if (IS_DEV) {
     html
       .pipe(dest('dist'))
@@ -68,7 +68,7 @@ const htmlMinify = () => {
       }))
       .pipe(dest('dist'))
   }
-  return html
+  return html;
 }
 
 const svgSprites = () => {
@@ -157,11 +157,16 @@ const sassStyles = () => {
 }
 
 const watchFiles = () => {
-  browserSync.init({
-    server: {
-      baseDir: 'dist'
-    }
-  })
+  if (IS_DEV) {
+    browserSync.init({
+      server: {
+        baseDir: 'dist'
+      }
+    })
+  } else {
+    return null;
+  }
+  
 }
 
 watch('src/**/*.html', htmlMinify);
@@ -187,4 +192,4 @@ exports.htmlMinify = htmlMinify;
 exports.sass = sass;
 exports.fonts = fonts;
 exports.webpConvert = webpConvert;
-exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images, watchFiles);
+exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images);
