@@ -190,4 +190,4 @@ exports.htmlMinify = htmlMinify;
 exports.sass = sass;
 exports.fonts = fonts;
 exports.webpConvert = webpConvert;
-exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images, watchFiles);
+exports.default = series(clean, resources, htmlMinify, scripts, fonts, svgSprites,  sassStyles, styles, images, IS_DEV && watchFiles);
