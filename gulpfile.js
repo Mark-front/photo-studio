@@ -51,7 +51,6 @@ const styles = () => {
         level: 2
       }))
       .pipe(dest('dist'))
-      .pipe(browserSync.stream())
   }
   return styles;
 }
@@ -68,7 +67,6 @@ const htmlMinify = () => {
         collapseWhitespace: true
       }))
       .pipe(dest('dist'))
-      .pipe(browserSync.stream())
   }
   return html
 }
@@ -112,7 +110,6 @@ const scripts = () => {
         toplevel: true
       }).on('error', notify.onError()))
       .pipe(dest('dist'))
-      .pipe(browserSync.stream())
   }
 
   return scripts
